@@ -49,13 +49,16 @@ app.delete('/contactList/:id', function (req, res) {
 
 app.get('/contactList/:id', function (req, res) {
     var id = req.params.id;
+    console.log(id);
     db.userFormDB.findOne({_id: mongojs.ObjectId(id)}, function (err, doc) {
+        console.log(doc);
         res.json(doc);
     });
 });
 
 app.put('/contactList/:id', function (req, res) {
     var id = req.params.id;
+    console.log(req.params.id);
     db.userFormDB.findAndModify({
         query: {_id: mongojs.ObjectId(id)},
         update: {$set: {name: req.body.name, email: req.body.email}},
